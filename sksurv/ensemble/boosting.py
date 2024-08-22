@@ -1240,6 +1240,7 @@ class GradientBoostingSurvivalAnalysis(BaseGradientBoosting, SurvivalAnalysisMix
             order="C",
             accept_sparse=["csr", "csc", "coo"],
             dtype=DTYPE,
+            force_all_finite=False,
         )
         event, time = check_array_survival(X, y)
 
@@ -1438,7 +1439,7 @@ class GradientBoostingSurvivalAnalysis(BaseGradientBoosting, SurvivalAnalysisMix
         """
         check_is_fitted(self, "estimators_")
 
-        X = self._validate_data(X, reset=False, order="C", accept_sparse="csr", dtype=DTYPE)
+        X = self._validate_data(X, reset=False, order="C", accept_sparse="csr", dtype=DTYPE, force_all_finite=False, )
         return self._predict(X)
 
     def staged_predict(self, X):
