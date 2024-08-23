@@ -389,7 +389,7 @@ class ComponentwiseGradientBoostingSurvivalAnalysis(BaseEnsemble, SurvivalAnalys
         if not self.warm_start:
             self._clear_state()
 
-        X = self._validate_data(X, ensure_min_samples=2)
+        X = self._validate_data(X, ensure_min_samples=2, force_all_finite=False)
         event, time = check_array_survival(X, y)
 
         sample_weight = _check_sample_weight(sample_weight, X)
@@ -470,7 +470,7 @@ class ComponentwiseGradientBoostingSurvivalAnalysis(BaseEnsemble, SurvivalAnalys
             Predicted risk scores.
         """
         check_is_fitted(self, "estimators_")
-        X = self._validate_data(X, reset=False)
+        X = self._validate_data(X, reset=False, force_all_finite=False)
 
         return self._predict(X)
 
